@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-blue);
+    padding: 12px 24px;
+    color: var(--neutral-white);
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+.navbar .icon {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-title {
+    font-size: 2rem;
+    margin-left: 12px;
+    flex-grow: 1;
+    font-family: 'Chela One', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.navbar-items {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.navbar-items li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar-items li:hover {
+    color: var(--secondary-sky);
+}
