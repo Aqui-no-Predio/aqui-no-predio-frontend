@@ -1,28 +1,24 @@
 :root {
     /* Cores principais */
-    --primary-teal: #1A936F;
-    --primary-blue: #4F86C6;
-    --primary-coral: #FF6B6B;
-    --primary-amber: #FFB344;
-    --primary-lavender: #9163CB;
-
-    /* Cores secundárias (tons mais claros) */
-    --secondary-mint: #add8b6;
-    --secondary-sky: #d1eaff;
-    --secondary-peach: #ffcec6;
-    --secondary-honey: #ffe6b8;
-    --secondary-lilac: #dbcbff;
+    --dark-slate-gray: #23434b;
+    --caribbean-current: #197278ff;
+    --cambridge-blue: #83a8a6ff;
+    --champagne-pink: #ffeee4;
+    --coral-pink: #ffa191;
+    --persian-red: #ff6554;
+    --burnt-umber: #a3382a;
 
     /* Cores neutras */
     --neutral-white: #FCFCFC;
-    --neutral-black: #252A34;
-    --neutral-gray: #6C757D;
-    --neutral-light-gray: #F0F4F8;
+    --neutral-black: #14181f;
+    --neutral-gray: #6c7d79;
+    --neutral-light-gray: #dfe9df;
 
     /* Sombras e transparências */
     --shadow-light: rgba(37, 42, 52, 0.08);
     --shadow-medium: rgba(37, 42, 52, 0.12);
     --overlay-light: rgba(37, 42, 52, 0.5);
+    --white-transparent: rgba(255, 250, 245, 0.9);
 }
 
 html,
@@ -158,4 +154,10 @@ table {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+body {
+    font-family: 'Fredoka', Arial, Helvetica, sans-serif;
+    background-color: var(--neutral-white);
+    overflow-x: hidden;
 }
