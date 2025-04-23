@@ -1,0 +1,68 @@
+.post-card {
+    width: 20rem;
+    background-color: var(--neutral-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--shadow-light);
+}
+
+.post-image {
+    height: 150px;
+    background-color: var(--coral-pink);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.post-category {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    background-color: var(--persian-red);
+    color: var(--neutral-white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.post-content {
+    padding: 30px 20px 20px;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--caribbean-current);
+    line-height: 1.4;
+
+}
+
+.post-excerpt {
+    font-size: 0.95rem;
+    color: var(--dark-slate-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: var(--neutral-gray);
+}
+
+.post-date {
+    display: flex;
+    align-items: center;
+}
+
+.post-date::before {
+    content: "📅";
+    margin-right: 5px;
+}
