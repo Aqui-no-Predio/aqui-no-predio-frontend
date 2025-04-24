@@ -1,14 +1,13 @@
 .hero-section {
     position: relative;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-top: 0;
-    padding-top: 70px;
     text-align: center;
+    padding: 2rem 1rem;
 }
 
 .hero-background {
@@ -17,22 +16,30 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--neutral-light-gray), var(--caribbean-current));
+    background: linear-gradient(135deg,
+            var(--caribbean-current),
+            var(--neutral-white));
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     z-index: -1;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    opacity: 20%;
+    object-fit: cover;
 }
 
 .hero-container {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 5%;
     position: relative;
     z-index: 10;
 }
 
 .hero-text h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 20px;
     color: var(--champagne-pink);
     line-height: 1.2;
@@ -44,7 +51,8 @@
 }
 
 .hero-text p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 500;
     margin-bottom: 30px;
     line-height: 1.6;
     max-width: 700px;
@@ -57,6 +65,7 @@
     display: flex;
     gap: 20px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -68,6 +77,7 @@
     transition: all 0.3s ease;
     border: none;
     outline: none;
+    min-width: 150px;
 }
 
 .btn-primary {
@@ -105,7 +115,7 @@
 .section-title {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 600;
     color: var(--dark-slate-gray);
     position: relative;
@@ -132,6 +142,7 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    flex-wrap: wrap;
 }
 
 .tab {
@@ -144,6 +155,7 @@
     border: none;
     background: none;
     color: var(--dark-slate-gray);
+    margin: 5px;
 }
 
 .tab.active {
@@ -153,41 +165,114 @@
 }
 
 .posts-grid {
-    display: flex;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
-/* Responsividade */
 @media (max-width: 992px) {
-    .hero-text h1 {
-        font-size: 3rem;
+    .hero-container {
+        display: flex;
+        justify-content: center;
     }
 
     .posts-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
 
-    .hero-text h1 {
-        font-size: 2.5rem;
+    .hero-container {
+        padding-top: 3rem;
+    }
+
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-buttons {
+        gap: 15px;
+    }
+
+    .btn {
+        width: auto;
+        min-width: 120px;
+        padding: 10px 20px;
     }
 
     .post-tabs {
-        flex-direction: column;
-        gap: 10px;
-        background: none;
-        padding: 0;
+        background-color: var(--neutral-light-gray);
+        padding: 5px;
+        border-radius: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 60vh;
+        padding: 2rem 0.5rem;
+    }
+
+    .hero-background {
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+
+    .hero-container {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+
+    .hero-text {
+        width: 80vw;
+    }
+
+    .btn {
+        width: 40%;
+        margin-bottom: 10px;
+    }
+
+    .post-tabs {
+        flex-direction: row;
+        justify-content: center;
+        gap: 5px;
     }
 
     .tab {
-        border-radius: 25px;
-        background-color: var(--neutral-white);
+        padding: 8px 15px;
+        font-size: 0.9rem;
     }
 
     .posts-grid {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 350px) {
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .tab {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 }
