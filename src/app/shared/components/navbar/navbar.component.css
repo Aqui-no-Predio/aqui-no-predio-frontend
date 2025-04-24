@@ -42,7 +42,7 @@
 }
 
 .nav-links a:hover {
-    color: var(--burnt-umber);
+    color: var(--persian-red);
 }
 
 .nav-links a::after {
@@ -52,7 +52,7 @@
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: var(--burnt-umber);
+    background-color: var(--persian-red);
     transition: width 0.3s ease;
 }
 
