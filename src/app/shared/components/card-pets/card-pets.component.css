@@ -1,0 +1,97 @@
+.pet-card {
+    width: 20rem;
+    background-color: var(--neutral-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--shadow-light);
+}
+
+.pet-image {
+    height: 150px;
+    background-color: var(--coral-pink);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.pet-category {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    background-color: var(--persian-red);
+    color: var(--neutral-white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.pet-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.pet-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--white-transparent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pet-action-btn:hover {
+    background-color: var(--neutral-white);
+    transform: scale(1.1);
+}
+
+.pet-content {
+    padding: 30px 20px 20px;
+}
+
+.pet-name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--caribbean-current);
+    line-height: 1.4;
+}
+
+.pet-data {
+    color: var(--dark-slate-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.pet-data span {
+    font-weight: 500;
+    color: var(--caribbean-current);
+}
+
+.pet-meta {
+    color: var(--neutral-gray);
+}
+
+.pet-apartment {
+    display: flex;
+    align-items: center;
+}
+
+.pet-apartment::before {
+    content: "📍";
+    margin-right: 5px;
+}
+

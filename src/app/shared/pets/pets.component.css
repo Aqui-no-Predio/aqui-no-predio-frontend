@@ -1,0 +1,93 @@
+.pets-view {
+    margin-top: 120px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.pets-container {
+    width: 80%;
+}
+
+.pets-title {
+    color: var(--caribbean-current);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cards-grid {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+@media screen and (max-width: 480px) {
+    .pets-view {
+        margin-top: 140px;
+
+        display: grid;
+        justify-content: center;
+    }
+
+    .pets-container {
+        width: 100%;
+    }
+
+    .pets-title {
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .pets-title {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .pets-view {
+        margin-top: 140px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .pets-view {
+        max-width: 1400px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
