@@ -6,6 +6,7 @@
     color: var(--champagne-pink);
     padding: 3rem 0;
     box-shadow: 0 -5px 15px var(--shadow-medium);
+    margin-top: 6rem;
 }
 
 .footer-content {
