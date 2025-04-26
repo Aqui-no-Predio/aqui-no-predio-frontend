@@ -3,10 +3,11 @@ import { LandingComponent } from "./shared/landing/landing.component";
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from "./shared/components/footer/footer.component";
 import { PetsComponent } from "./shared/pets/pets.component";
+import { ServicesComponent } from "./shared/services/services.component";
 
 @Component({
   selector: 'app-root',
-  imports: [LandingComponent, NavbarComponent, FooterComponent, PetsComponent],
+  imports: [LandingComponent, NavbarComponent, FooterComponent, PetsComponent, ServicesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

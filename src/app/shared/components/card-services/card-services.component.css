@@ -1,50 +1,51 @@
-.pet-card {
+.service-card {
     width: 20rem;
     background-color: var(--neutral-white);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 25px var(--shadow-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-.pet-card:hover {
+.service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px var(--shadow-light);
 }
 
-.pet-image {
-    height: 150px;
-    background-color: var(--coral-pink);
-    background-size: cover;
-    background-position: center;
-    position: relative;
+.service-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-.pet-category {
-    position: absolute;
-    bottom: -15px;
-    left: 20px;
-    background-color: var(--persian-red);
-    color: var(--neutral-white);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.service-name {
+    font-size: 1.5rem;
     font-weight: 500;
+    color: var(--persian-red);
+    line-height: 1.4;
+    margin: 0;
 }
 
-.pet-actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.service-actions {
     display: flex;
     gap: 5px;
 }
 
-.pet-action-btn {
+.service-action-btn {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: var(--white-transparent);
+    background-color: var(--champagne-pink);
     border: none;
     cursor: pointer;
     display: flex;
@@ -53,48 +54,34 @@
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.pet-action-btn:hover {
-    background-color: var(--neutral-white);
+.service-action-btn:hover {
+    background-color: var(--persian-red);
     transform: scale(1.1);
 }
 
-.pet-content {
-    padding: 30px 20px 20px;
-    flex: 1;
-}
-
-.pet-name {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 8px;
-    color: var(--caribbean-current);
-    line-height: 1.4;
-}
-
-.pet-data {
+.service-data {
     color: var(--dark-slate-gray);
     margin-bottom: 20px;
     line-height: 1.6;
     flex: 1;
 }
 
-.pet-data span {
+.service-data span {
     font-weight: 500;
     color: var(--caribbean-current);
 }
 
-.pet-meta {
+.service-meta {
     color: var(--neutral-gray);
     margin-top: auto;
 }
 
-.pet-apartment {
+.service-apartment {
     display: flex;
     align-items: center;
 }
 
-.pet-apartment::before {
+.service-apartment::before {
     content: "📍";
     margin-right: 5px;
 }
-
