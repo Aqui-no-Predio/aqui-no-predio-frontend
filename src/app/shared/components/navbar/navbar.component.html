@@ -1,19 +1,20 @@
 <header class="navbar">
     <div class="navbar-container">
-        <div class="logo">
+        <a class="logo" routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">
             <img src="https://placehold.co/40" class="icon" />
             <h1> Aqui no <span>Prédio</span> </h1>
-        </div>
+        </a>
         <nav class="nav-links">
-            <a class="material-symbols-outlined" href="">
+            <a class="material-symbols-outlined" routerLink="/servicos" routerLinkActive="active" ariaCurrentWhenActive="page">
                 assignment_ind
             </a>
-            <a class="material-symbols-outlined" href="">
+            <a class="material-symbols-outlined"  routerLink="/pets" routerLinkActive="active" ariaCurrentWhenActive="page">
                 pets
             </a>
-            <a class="material-symbols-outlined" href="">
+            <a class="material-symbols-outlined" routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">
                 lock_person
             </a>
         </nav>
     </div>
 </header>
+<router-outlet/>
