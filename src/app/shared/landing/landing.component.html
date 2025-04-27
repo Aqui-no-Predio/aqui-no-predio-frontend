@@ -18,8 +18,10 @@
                     lar. Tudo em um só lugar, feito para a sua comunidade.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary">Ver pessoas</button>
-                    <button class="btn btn-secondary">Ver pets</button>
+                    <button class="btn btn-primary" routerLink="/servicos" routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Ver serviços</button>
+                    <button class="btn btn-secondary" routerLink="/pets" routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Ver pets</button>
                 </div>
             </div>
         </div>
@@ -44,3 +46,4 @@
         </div>
     </section>
 </div>
+<router-outlet />
