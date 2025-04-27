@@ -1,0 +1,13 @@
+.view {
+    margin-top: 8rem;
+    width: 100%;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+}
+
+.post {
+    width: 100%;
+}
