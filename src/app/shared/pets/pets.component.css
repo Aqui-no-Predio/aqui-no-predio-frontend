@@ -1,0 +1,134 @@
+.pets-view {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.pets-container {
+    width: 80%;
+}
+
+.pets-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: clamp(1.8rem, 4vw, 4rem);
+    font-weight: 600;
+    color: var(--dark-slate-gray);
+    position: relative;
+}
+
+.pets-title::after{
+    content: "";
+    position: absolute;
+    width: 86px;
+    height: 4px;
+    background-color: var(--persian-red);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pets-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-radius: 50px;
+    background-color: var(--neutral-light-gray);
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: none;
+    color: var(--dark-slate-gray);
+    margin: 5px;
+}
+
+.tab.active {
+    background-color: var(--caribbean-current);
+    color: var(--neutral-white);
+    box-shadow: 0 4px 10px var(--shadow-light);
+}
+
+.cards-grid {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+@media screen and (max-width: 480px) {
+    .pets-view {
+        margin-top: 140px;
+
+        display: grid;
+        justify-content: center;
+    }
+
+    .pets-container {
+        width: 100%;
+    }
+
+    .pets-title {
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .pets-title {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .pets-view {
+        margin-top: 140px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .pets-view {
+        max-width: 1400px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}

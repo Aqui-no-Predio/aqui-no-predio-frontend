@@ -8,6 +8,7 @@
     overflow: hidden;
     text-align: center;
     padding: 2rem 1rem;
+    margin-bottom: 20px;
 }
 
 .hero-background {
@@ -101,10 +102,6 @@
     background-color: var(--coral-pink);
     color: var(--champagne-pink);
     transform: translateY(-3px);
-}
-
-.posts-section {
-    padding: 20px 5% 100px;
 }
 
 .posts-container {

@@ -1,0 +1,29 @@
+<h1 class="posts-title">Crie um novo aviso</h1>
+<div class="post-container">
+    <form id="styleForm">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input class="form-text" type="text" id="title" name="title" placeholder="Digite o título aqui..." required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <textarea class="form-text" id="description" name="description"
+                placeholder="Digite a descrição detalhada aqui..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Categoria</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="category" value="avisos" checked> Avisos
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="category" value="eventos"> Eventos
+                </label>
+            </div>
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
+</div>

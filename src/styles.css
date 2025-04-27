@@ -18,7 +18,7 @@
     --shadow-light: rgba(37, 42, 52, 0.08);
     --shadow-medium: rgba(37, 42, 52, 0.12);
     --overlay-light: rgba(37, 42, 52, 0.5);
-    --white-transparent: rgba(255, 250, 245, 0.74);
+    --white-transparent: rgba(245, 249, 255, 0.74);
 }
 
 html,
@@ -124,10 +124,6 @@ section {
     display: block;
 }
 
-body {
-    line-height: 1;
-}
-
 ol,
 ul {
     list-style: none;
@@ -160,4 +156,6 @@ body {
     font-family: 'Fredoka', Arial, Helvetica, sans-serif;
     background-color: var(--neutral-white);
     overflow-x: hidden;
+    line-height: 1;
+    min-height: 100%
 }
