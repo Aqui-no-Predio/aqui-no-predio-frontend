@@ -1,13 +1,12 @@
 <div class="post-card">
     <div class="post-image">
-        <span class="post-category">Avisos</span>
+        <span class="post-category">{{post.postType}}</span>
     </div>
     <div class="post-content">
-        <h3 class="post-title">Reunião de Condomínio: 25/04/2025</h3>
-        <p class="post-excerpt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita iure, asperiores
-            aspernatur id rerum veniam sapiente necessitatibus cupiditate. </p>
+        <h3 class="post-title">{{post.postTitle}}</h3>
+        <p class="post-excerpt">{{post.description}}</p>
         <div class="post-meta">
-            <span class="post-date">22 Abril, 2025</span>
+            <span class="post-date">Publicado em {{dateFormatter() }}</span>
         </div>
     </div>
 </div>

@@ -36,12 +36,7 @@
                 <button class="tab">Eventos</button>
             </div>
             <div class="posts-grid">
-                <app-card-post />
-                <app-card-post />
-                <app-card-post />
-                <app-card-post />
-                <app-card-post />
-                <app-card-post />
+                <app-card-post *ngFor="let post of posts" [post]="post"/>
             </div>
         </div>
     </section>
