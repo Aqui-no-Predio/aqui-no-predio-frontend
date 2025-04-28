@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core'
 import { Pet } from '../../../models/pet.model';
-import { PETS } from '../../../../assets/mocks/pet.mock';
-
 
 @Component({
   selector: 'app-card-pets',

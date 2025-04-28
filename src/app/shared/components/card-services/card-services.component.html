@@ -1,7 +1,7 @@
 <div class="service-card">
     <div class="service-content">
         <div class="service-header">
-            <h3 class="service-name">Costureira</h3>
+            <h3 class="service-name">{{ service.serviceName }}</h3>
             <div class="service-actions">
                 <button class="service-action-btn edit-btn">
                     <span>✏️</span>
@@ -15,16 +15,16 @@
         <div class="service-data">
             <p>
                 <span>Descrição:</span>
-                Costura de roupas
+                {{ service.description }}
             </p>
             <p>
                 <span>Pessoa:</span>
-                Fernanda Mendes
+                {{ service.person }}
             </p>
         </div>
 
         <div class="service-meta">
-            <span class="service-apartment">Apto 401, Torre C</span>
+            <span class="service-apartment">Apto {{ service.apartment }}</span>
         </div>
     </div>
 </div>
