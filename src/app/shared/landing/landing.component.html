@@ -31,12 +31,14 @@
             <h2 class="section-title">Novidades</h2>
 
             <div class="post-tabs">
-                <button class="tab active">Todos</button>
-                <button class="tab">Avisos</button>
-                <button class="tab">Eventos</button>
+                <button class="tab" [class.active]="activeTab === 'Todos'" (click)="filterPosts('Todos')">Todos</button>
+                <button class="tab" [class.active]="activeTab === 'Aviso'"
+                    (click)="filterPosts('Aviso')">Avisos</button>
+                <button class="tab" [class.active]="activeTab === 'Evento'"
+                    (click)="filterPosts('Evento')">Eventos</button>
             </div>
             <div class="posts-grid">
-                <app-card-post *ngFor="let post of posts" [post]="post"/>
+                <app-card-post *ngFor="let post of filteredPosts" [post]="post" />
             </div>
         </div>
     </section>

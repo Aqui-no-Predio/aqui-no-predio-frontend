@@ -12,7 +12,19 @@ import { POSTS } from '../../../assets/mocks/post.mock';
   styleUrl: './landing.component.css'
 })
 export class LandingComponent {
-  posts: Post[] = POSTS;
+  allPosts: Post[] = POSTS;
+  filteredPosts: Post[] = [...this.allPosts];
+  activeTab: string = 'Todos';
 
   constructor() { }
+
+  filterPosts(type: string): void {
+    this.activeTab = type;
+
+    if (type === 'Todos') {
+      this.filteredPosts = [...this.allPosts];
+    } else {
+      this.filteredPosts = this.allPosts.filter(post => post.postType === type);
+    }
+  }
 }
