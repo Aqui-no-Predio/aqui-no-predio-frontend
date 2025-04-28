@@ -24,5 +24,29 @@ export const PETS: Pet[] = [
         characteristics: 'Verde',
         person: 'Ana Pereira',
         apartment: '201C'
+    },
+    {
+        id: 4,
+        petName: 'Remy',
+        petType: 'Roedor',
+        characteristics: 'Ratinho cinza',
+        person: 'Daniel Cardoso',
+        apartment: '209C'
+    },
+    {
+        id: 5,
+        petName: 'Pascal',
+        petType: 'Réptil',
+        characteristics: 'Lagarto verde',
+        person: 'Vitória Lemos',
+        apartment: '302A'
+    },
+    {
+        id: 6,
+        petName: 'Outro pet',
+        petType: 'Outro',
+        characteristics: 'Características',
+        person: 'Pessoa',
+        apartment: 'Apartamento'
     }
 ];

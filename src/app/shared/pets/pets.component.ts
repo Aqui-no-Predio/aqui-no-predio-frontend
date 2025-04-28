@@ -20,7 +20,7 @@ export class PetsComponent {
   filterPets(type: string): void {
     this.activeTab = type;
 
-    if (type === 'Todos') {
+    if (type === 'Todos'){
       this.filteredPets = [...this.allPets];
     } else {
       this.filteredPets = this.allPets.filter(pet => pet.petType === type)

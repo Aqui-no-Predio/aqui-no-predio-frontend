@@ -23,6 +23,31 @@
     position: relative;
 }
 
+.pet-image-dog {
+    background-image: url('https://i.postimg.cc/tgBktHSm/1.jpg');
+}
+
+.pet-image-cat {
+    background-image: url('https://i.postimg.cc/y8Q3LYK9/2.jpg');
+}
+
+.pet-image-bird {
+    background-image: url('https://i.postimg.cc/5NpXtN6G/3.jpg');
+}
+
+.pet-image-rodent {
+    background-image: url('https://i.postimg.cc/25GccW6G/4.jpg');
+}
+
+.pet-image-reptile {
+    background-image: url('https://i.postimg.cc/VsCT1dHf/5.jpg');
+}
+
+.pet-image-other {
+    background-image: url('https://i.postimg.cc/rFySjH4B/6.jpg');
+
+}
+
 .pet-category {
     position: absolute;
     bottom: -15px;

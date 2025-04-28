@@ -1,5 +1,5 @@
 <div class="pet-card">
-    <div class="pet-image" style="background-image: url('https://placehold.co/400')">
+    <div class="pet-image" [ngClass]="getPetTypeClass(pet.petType)">
         <span class="pet-category">{{ pet.petType }}</span>
         <div class="pet-actions">
             <button class="pet-action-btn edit-btn">
