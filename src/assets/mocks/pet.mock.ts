@@ -20,8 +20,8 @@ export const PETS: Pet[] = [
     {
         id: 3,
         petName: 'Chico',
-        petType: 'Papagaio',
-        characteristics: 'Verde, tag no pé',
+        petType: 'Ave',
+        characteristics: 'Verde',
         person: 'Ana Pereira',
         apartment: '201C'
     }

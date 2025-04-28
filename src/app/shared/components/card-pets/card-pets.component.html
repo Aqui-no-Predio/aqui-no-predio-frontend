@@ -1,6 +1,6 @@
 <div class="pet-card">
     <div class="pet-image" style="background-image: url('https://placehold.co/400')">
-        <span class="pet-category">Cachorro</span>
+        <span class="pet-category">{{ pet.petType }}</span>
         <div class="pet-actions">
             <button class="pet-action-btn edit-btn">
                 <span>✏️</span>
@@ -10,17 +10,20 @@
             </button>
         </div>
     </div>
+
     <div class="pet-content">
-        <h3 class="pet-name">Bob</h3>
+        <h3 class="pet-name">{{ pet.petName }}</h3>
         <div class="pet-data">
             <p><span>Características:</span>
-                Labrador, dourado, dócil e brincalhão</p>
+                {{ pet.characteristics }}
+            </p>
             <p><span>Tutor:</span>
-                Fernanda Mendes</p>
+                {{ pet.person }}
+            </p>
         </div>
 
         <div class="pet-meta">
-            <span class="pet-apartment">Apto 401, Torre C</span>
+            <span class="pet-apartment">Apto {{ pet.apartment }}</span>
         </div>
     </div>
 </div>
