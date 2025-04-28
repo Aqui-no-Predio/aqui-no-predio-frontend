@@ -1,6 +1,9 @@
 <div class="post-card">
-    <div class="post-image">
-        <span class="post-category">{{post.postType}}</span>
+    <div class="post-header" [ngClass]="{
+        'post-header-aviso': post.postType === 'Aviso',
+        'post-header-evento': post.postType === 'Evento'
+    }">
+        {{post.postType}}
     </div>
     <div class="post-content">
         <h3 class="post-title">{{post.postTitle}}</h3>

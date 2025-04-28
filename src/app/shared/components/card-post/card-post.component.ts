@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../../models/post.model';
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-card-post',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './card-post.component.html',
   styleUrl: './card-post.component.css'
 })
