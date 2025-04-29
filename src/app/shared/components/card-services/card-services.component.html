@@ -1,12 +1,12 @@
 <div class="service-card">
     <div class="service-content">
         <div class="service-header">
-            <h3 class="service-name">Costureira</h3>
+            <h3 class="service-name">{{ service.serviceName }}</h3>
             <div class="service-actions">
-                <button class="service-action-btn edit-btn">
+                <button class="service-action-btn edit-btn" (click)="openEditModal()">
                     <span>✏️</span>
                 </button>
-                <button class="service-action-btn delete-btn">
+                <button class="service-action-btn delete-btn" (click)="openDeleteModal()">
                     <span>🗑️</span>
                 </button>
             </div>
@@ -15,16 +15,86 @@
         <div class="service-data">
             <p>
                 <span>Descrição:</span>
-                Costura de roupas
+                {{ service.description }}
             </p>
             <p>
                 <span>Pessoa:</span>
-                Fernanda Mendes
+                {{ service.person }}
             </p>
         </div>
 
         <div class="service-meta">
-            <span class="service-apartment">Apto 401, Torre C</span>
+            <span class="service-apartment">Apto {{ service.apartment }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" [class.show]="isEditModalOpen" *ngIf="isEditModalOpen" #editModalElement>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Serviço</h4>
+                <button type="button" class="close-btn" (click)="closeEditModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="serviceForm">
+                    <div class="form-group">
+                        <label for="serviceName">Serviço</label>
+                        <input type="text" class="form-control" id="serviceName" formControlName="serviceName">
+                        <div *ngIf="serviceForm.get('serviceName')?.invalid && serviceForm.get('serviceName')?.touched"
+                            class="text-danger">
+                            Nome do serviço é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Tipo de Serviço</label>
+                        <input type="text" class="form-control" id="description" formControlName="description">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="person">Pessoa</label>
+                        <input type="text" class="form-control" id="person" formControlName="person">
+                        <div *ngIf="serviceForm.get('person')?.invalid && serviceForm.get('person')?.touched"
+                            class="text-danger">
+                            Nome de quem oferece o serviço é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apartment">Apartamento</label>
+                        <input type="text" class="form-control" id="apartment" formControlName="apartment">
+                        <div *ngIf="serviceForm.get('apartment')?.invalid && serviceForm.get('apartment')?.touched"
+                            class="text-danger">
+                            Número do apartamento é obrigatório
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary" [disabled]="serviceForm.invalid"
+                    (click)="saveService()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" [class.show]="isDeleteModalOpen" *ngIf="isDeleteModalOpen" #deleteModalElement>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmar Exclusão</h4>
+                <button type="button" class="close-btn" (click)="closeDeleteModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir o serviço <strong>{{ service.serviceName }}</strong>?</p>
+                <p class="text-danger">Esta ação não pode ser desfeita.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteService()">Excluir</button>
+            </div>
         </div>
     </div>
 </div>

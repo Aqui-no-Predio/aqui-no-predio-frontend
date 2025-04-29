@@ -1,11 +1,11 @@
 <div class="pet-card">
-    <div class="pet-image" style="background-image: url('https://placehold.co/400')">
+    <div class="pet-image" [ngClass]="getPetTypeClass(pet.petType)">
         <span class="pet-category">{{ pet.petType }}</span>
         <div class="pet-actions">
-            <button class="pet-action-btn edit-btn">
+            <button class="pet-action-btn edit-btn" (click)="openEditModal()">
                 <span>✏️</span>
             </button>
-            <button class="pet-action-btn delete-btn">
+            <button class="pet-action-btn delete-btn" (click)="openDeleteModal()">
                 <span>🗑️</span>
             </button>
         </div>
@@ -24,6 +24,90 @@
 
         <div class="pet-meta">
             <span class="pet-apartment">Apto {{ pet.apartment }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" [class.show]="isEditModalOpen" *ngIf="isEditModalOpen" #editModalElement>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Pet</h4>
+                <button type="button" class="close-btn" (click)="closeEditModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="petForm">
+                    <div class="form-group">
+                        <label for="petName">Nome do Pet</label>
+                        <input type="text" class="form-control" id="petName" formControlName="petName">
+                        <div *ngIf="petForm.get('petName')?.invalid && petForm.get('petName')?.touched"
+                            class="text-danger">
+                            Nome do pet é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="petType">Tipo de Pet</label>
+                        <input type="text" class="form-control" id="petType" formControlName="petType">
+                        <div *ngIf="petForm.get('petType')?.invalid && petForm.get('petType')?.touched"
+                            class="text-danger">
+                            Tipo de pet é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="characteristics">Características</label>
+                        <textarea class="form-control" id="characteristics" formControlName="characteristics"
+                            rows="3"></textarea>
+                        <div *ngIf="petForm.get('characteristics')?.invalid && petForm.get('characteristics')?.touched"
+                            class="text-danger">
+                            Características são obrigatórias
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="person">Tutor</label>
+                        <input type="text" class="form-control" id="person" formControlName="person">
+                        <div *ngIf="petForm.get('person')?.invalid && petForm.get('person')?.touched"
+                            class="text-danger">
+                            Nome do tutor é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apartment">Apartamento</label>
+                        <input type="text" class="form-control" id="apartment" formControlName="apartment">
+                        <div *ngIf="petForm.get('apartment')?.invalid && petForm.get('apartment')?.touched"
+                            class="text-danger">
+                            Número do apartamento é obrigatório
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary" [disabled]="petForm.invalid"
+                    (click)="savePet()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" [class.show]="isDeleteModalOpen" *ngIf="isDeleteModalOpen" #deleteModalElement>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmar Exclusão</h4>
+                <button type="button" class="close-btn" (click)="closeDeleteModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir o pet <strong>{{ pet.petName }}</strong>?</p>
+                <p class="text-danger">Esta ação não pode ser desfeita.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deletePet()">Excluir</button>
+            </div>
         </div>
     </div>
 </div>

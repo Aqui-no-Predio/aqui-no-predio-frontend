@@ -11,7 +11,24 @@ import { PETS } from '../../../assets/mocks/pet.mock';
   styleUrl: './pets.component.css'
 })
 export class PetsComponent {
-  pets: Pet[] = PETS;
+
+  allPets: Pet[] = PETS;
+  filteredPets: Pet[] = [...this.allPets]
+  activeTab: string = 'Todos';
 
   constructor() { }
+
+  filterPets(type: string): void {
+    this.activeTab = type;
+
+    if (type === 'Todos') {
+      this.filteredPets = [...this.allPets];
+    } else {
+      this.filteredPets = this.allPets.filter(pet => pet.petType === type)
+    }
+  }
+
+  addPet() {
+    console.log('Método de adicionar pet ainda não implementado')
+  }
 }

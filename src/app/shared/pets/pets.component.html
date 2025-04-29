@@ -1,17 +1,24 @@
 <div class="pets-view">
     <div class="pets-container">
         <h1 class="pets-title">Pets</h1>
+
         <div class="pets-tabs">
-            <button class="tab active">Todos</button>
-            <button class="tab">Cachorros</button>
-            <button class="tab">Gatos</button>
-            <button class="tab">Aves</button>
-            <button class="tab">Roedores</button>
-            <button class="tab">Réptil</button>
-            <button class="tab">Outros</button>
+            <button class="tab" [class.active]="activeTab === 'Todos'" (click)="filterPets('Todos')">Todos</button>
+            <button class="tab" [class.active]="activeTab === 'Cachorro'"
+                (click)="filterPets('Cachorro')">Cachorros</button>
+            <button class="tab" [class.active]="activeTab === 'Gato'" (click)="filterPets('Gato')">Gatos</button>
+            <button class="tab" [class.active]="activeTab === 'Ave'" (click)="filterPets('Ave')">Aves</button>
+            <button class="tab" [class.active]="activeTab === 'Roedor'" (click)="filterPets('Roedor')">Roedores</button>
+            <button class="tab" [class.active]="activeTab === 'Réptil'" (click)="filterPets('Réptil')">Répteis</button>
+            <button class="tab" [class.active]="activeTab === 'Outro'" (click)="filterPets('Outro')">Outros</button>
         </div>
+
         <div class="cards-grid">
-            <app-card-pets *ngFor="let pet of pets" [pet]="pet"></app-card-pets>
+            <app-card-pets *ngFor="let pet of filteredPets" [pet]="pet" />
+        </div>
+        <div class="add-pet-container">
+            <button class="add-pet-button" (click)="addPet()">Adicionar Pet</button>
         </div>
     </div>
+
 </div>

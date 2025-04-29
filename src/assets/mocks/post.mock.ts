@@ -18,7 +18,7 @@ export const POSTS: Post[] = [
     {
         id: 3,
         postTitle: 'Aulas de Yoga',
-        postType: 'Atividade',
+        postType: 'Evento',
         description: 'Aulas gratuitas de yoga toda segunda e quarta-feira às 19h no salão comunitário.',
         postDate: new Date('2025-04-28')
     }
