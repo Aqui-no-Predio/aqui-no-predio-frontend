@@ -14,4 +14,8 @@ export class ServicesComponent {
   services: Service[] = SERVICES;
 
   constructor() { }
+
+  addService() {
+    console.log('Método de adicionar serviço ainda não implementado')
+  }
 }

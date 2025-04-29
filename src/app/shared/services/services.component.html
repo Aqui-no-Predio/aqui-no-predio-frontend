@@ -2,7 +2,10 @@
     <div class="services-container">
         <h1 class="services-title">Serviços</h1>
         <div class="cards-grid">
-            <app-card-services *ngFor="let service of services" [service]="service"/>
+            <app-card-services *ngFor="let service of services" [service]="service" />
+        </div>
+        <div class="add-service-container">
+            <button class="add-service-button" (click)="addService()">Adicionar serviço</button>
         </div>
     </div>
 </div>

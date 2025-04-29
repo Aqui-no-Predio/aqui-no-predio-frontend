@@ -1,6 +1,7 @@
 <div class="pets-view">
     <div class="pets-container">
         <h1 class="pets-title">Pets</h1>
+
         <div class="pets-tabs">
             <button class="tab" [class.active]="activeTab === 'Todos'" (click)="filterPets('Todos')">Todos</button>
             <button class="tab" [class.active]="activeTab === 'Cachorro'"
@@ -11,8 +12,13 @@
             <button class="tab" [class.active]="activeTab === 'Réptil'" (click)="filterPets('Réptil')">Répteis</button>
             <button class="tab" [class.active]="activeTab === 'Outro'" (click)="filterPets('Outro')">Outros</button>
         </div>
+
         <div class="cards-grid">
             <app-card-pets *ngFor="let pet of filteredPets" [pet]="pet" />
         </div>
+        <div class="add-pet-container">
+            <button class="add-pet-button" (click)="addPet()">Adicionar Pet</button>
+        </div>
     </div>
+
 </div>

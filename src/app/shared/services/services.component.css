@@ -29,6 +29,29 @@
     transform: translateX(-50%);
 }
 
+.add-service-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-service-button {
+    padding: 12px 25px;
+    background-color: var(--persian-red);
+    color: var(--neutral-white);
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 2rem;
+}
+
+.add-service-button:hover {
+    background-color: var(--burnt-umber);
+    transform: scale(1.05);
+}
+
 .cards-grid {
     display: grid;
     justify-items: center;
