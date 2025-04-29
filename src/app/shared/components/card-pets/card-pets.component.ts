@@ -42,7 +42,7 @@ export class CardPetsComponent {
     this.petForm = this.fb.group({
       petName: [this.pet.petName, Validators.required],
       petType: [this.pet.petType, Validators.required],
-      characteristics: [this.pet.characteristics, Validators.required],
+      characteristics: [this.pet.characteristics],
       person: [this.pet.person, Validators.required],
       apartment: [this.pet.apartment, Validators.required]
     });
