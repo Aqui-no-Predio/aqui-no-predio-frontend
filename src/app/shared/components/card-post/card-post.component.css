@@ -17,7 +17,7 @@
 
 .post-header {
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     color: var(--neutral-white);
     font-size: 1.25rem;
@@ -74,4 +74,27 @@
 .post-date::before {
     content: "📅";
     margin-right: 5px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.post-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--white-transparent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.post-action-btn:hover {
+    background-color: var(--neutral-white);
+    transform: scale(1.1);
 }

@@ -4,10 +4,10 @@
         'post-header-evento': post.postType === 'Evento'
     }">
         {{post.postType}}
-    </div>
-    <div *ngIf="accessGranted$ | async">
-        <button (click)="editPost()">Editar</button>
-        <button (click)="deletePost()">Deletar</button>
+        <div *ngIf="accessGranted$ | async" class="post-actions">
+            <button class="post-action-btn edit-btn" (click)="editPost()">✏️</button>
+            <button class="post-action-btn delete-btn" (click)="deletePost()">🗑️</button>
+        </div>
     </div>
     <div class="post-content">
         <h3 class="post-title">{{post.postTitle}}</h3>
