@@ -1,23 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ManagerLoginComponent } from "../components/manager-login/manager-login.component";
 import { PostsComponent } from "../posts/posts.component";
-import { ManagerPostComponent } from "../components/manager-post/manager-post.component";
 import { Observable } from 'rxjs';
 import { AccessService } from '../../core/services/access.service';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-manager',
-  imports: [ManagerLoginComponent, PostsComponent, ManagerPostComponent, CommonModule],
+  imports: [ManagerLoginComponent, PostsComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './manager.component.html',
   styleUrl: './manager.component.css'
 })
 export class ManagerComponent {
   accessGranted$: Observable<boolean>;
+  isCreateModalOpen = false;
 
   constructor(private accessService: AccessService) {
     this.accessGranted$ = this.accessService.accessGranted$;
   }
 
-  showComponent: 'posts' | 'managerPost' | null = null;
+  showComponent: 'posts' | null = null;
+
+  openCreateModal(): void {
+    this.isCreateModalOpen = true;
+    document.body.classList.add('modal-open');
+    console.log("abre modal")
+  }
+
+  closeCreateModal(): void {
+    this.isCreateModalOpen = false;
+    document.body.classList.remove('modal-open');
+  }
+
 }

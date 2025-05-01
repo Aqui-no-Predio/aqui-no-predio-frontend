@@ -33,7 +33,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Editar Pet</h4>
-                <button type="button" class="close-btn" (click)="closeEditModal()">×</button>
+                <button type="button" class="close-btn" (click)="closeEditModal()">&times;</button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="petForm">
@@ -94,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Confirmar Exclusão</h4>
-                <button type="button" class="close-btn" (click)="closeDeleteModal()">×</button>
+                <button type="button" class="close-btn" (click)="closeDeleteModal()">&times;</button>
             </div>
             <div class="modal-body">
                 <p>Tem certeza que deseja excluir o pet <strong>{{ pet.petName }}</strong>?</p>

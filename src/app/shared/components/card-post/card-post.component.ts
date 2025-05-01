@@ -24,9 +24,7 @@ export class CardPostComponent {
   constructor(private accessService: AccessService, private fb: FormBuilder) {
     this.accessGranted$ = this.accessService.accessGranted$;
   }
-
-  ngOnInit(): void { }
-
+  
   openEditModal(): void {
     this.postForm = this.fb.group({
       postTitle: [this.post.postTitle, Validators.required],
