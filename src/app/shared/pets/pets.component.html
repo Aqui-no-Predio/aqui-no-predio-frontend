@@ -17,7 +17,97 @@
             <app-card-pets *ngFor="let pet of filteredPets" [pet]="pet" />
         </div>
         <div class="add-pet-container">
-            <button class="add-pet-button" (click)="addPet()">Adicionar Pet</button>
+            <button class="add-pet-button" (click)="openCreateModal()">Adicionar Pet</button>
+
+            <div *ngIf="isCreateModalOpen" class="modal-backdrop show">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Cadastrar novo pet</h2>
+                            <button class="close-btn" (click)="closeCreateModal()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <label for="petName">Nome do Pet</label>
+                                    <input type="text" class="form-control" id="petName" formControlName="petName"
+                                        placeholder="Digite o nome do pet aqui..."
+                                        [ngClass]="{'is-invalid': petForm.get('petName')?.invalid && petForm.get('petName')?.touched}">
+                                    <div *ngIf="petForm.get('petName')?.invalid && petForm.get('petName')?.touched"
+                                        class="error-message">
+                                        Nome do pet é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="petType">Tipo de Pet</label>
+                                    <div class="radio-group"
+                                        [ngClass]="{'is-invalid': petForm.get('petType')?.invalid && petForm.get('petType')?.touched}">
+                                        <label class="radio-option">
+                                            <input type="radio" formControlName="petType" value="cachorro"> Cachorro
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" formControlName="petType" value="gato"> Gato
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" formControlName="petType" value="ave"> Ave
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" formControlName="petType" value="roedor"> Roedor
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" formControlName="petType" value="reptil"> Réptil
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" formControlName="petType" value="outro"> Outro
+                                        </label>
+                                    </div>
+                                    <div *ngIf="petForm.get('petType')?.invalid && petForm.get('petType')?.touched"
+                                        class="error-message">
+                                        Tipo de pet é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="characteristics">Características</label>
+                                    <textarea class="form-control" id="characteristics"
+                                        placeholder="Digite as características do pet aqui..."
+                                        formControlName="characteristics" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="person">Tutor</label>
+                                    <input type="text" class="form-control" id="person" formControlName="person"
+                                        placeholder="Digite o tutor do pet aqui..."
+                                        [ngClass]="{'is-invalid': petForm.get('person')?.invalid && petForm.get('person')?.touched}">
+                                    <div *ngIf="petForm.get('person')?.invalid && petForm.get('person')?.touched"
+                                        class="error-message">
+                                        Nome do tutor é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="apartment">Apartamento</label>
+                                    <input type="text" class="form-control" id="apartment" formControlName="apartment"
+                                        placeholder="Digite o apartamento do pet aqui..."
+                                        [ngClass]="{'is-invalid': petForm.get('apartment')?.invalid && petForm.get('apartment')?.touched}">
+                                    <div *ngIf="petForm.get('apartment')?.invalid && petForm.get('apartment')?.touched"
+                                        class="error-message">
+                                        Número do apartamento é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        (click)="closeCreateModal()">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary"
+                                        [disabled]="petForm.invalid">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
