@@ -4,8 +4,7 @@ import { PostsComponent } from "../posts/posts.component";
 import { Observable } from 'rxjs';
 import { AccessService } from '../../core/services/access.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Post } from '../../models/post.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-manager',
