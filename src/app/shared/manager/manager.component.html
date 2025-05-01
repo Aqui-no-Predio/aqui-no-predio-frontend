@@ -1,12 +1,20 @@
 <div class="view">
-
-    <div class="login">
-        <app-manager-login />
+    <div class="login" *ngIf="!(accessGranted$ | async)">
+        <app-manager-login></app-manager-login>
     </div>
 
-    <!-- <div class="post">
-        <app-manager-post/>
-    </div> -->
+    <div *ngIf="accessGranted$ | async">
+        <div class="action-btn">
+            <button class="posts-btn" (click)="showComponent = 'posts'">Ver, editar e deletar posts</button>
+            <button class="create-btn" (click)="showComponent = 'managerPost'">Criar novo post</button>
+        </div>
 
-    <app-posts/>
+        <div class="post" *ngIf="showComponent === 'managerPost'">
+            <app-manager-post></app-manager-post>
+        </div>
+
+        <div *ngIf="showComponent === 'posts'">
+            <app-posts></app-posts>
+        </div>
+    </div>
 </div>
