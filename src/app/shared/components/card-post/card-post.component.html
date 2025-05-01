@@ -5,6 +5,10 @@
     }">
         {{post.postType}}
     </div>
+    <div *ngIf="accessGranted$ | async">
+        <button (click)="editPost()">Editar</button>
+        <button (click)="deletePost()">Deletar</button>
+    </div>
     <div class="post-content">
         <h3 class="post-title">{{post.postTitle}}</h3>
         <p class="post-excerpt">{{post.description}}</p>
