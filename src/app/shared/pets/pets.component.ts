@@ -42,7 +42,6 @@ export class PetsComponent {
   openCreateModal(): void {
     this.isCreateModalOpen = true;
     document.body.classList.add('modal-open');
-    console.log("abre modal")
   }
 
   onSubmit() {
