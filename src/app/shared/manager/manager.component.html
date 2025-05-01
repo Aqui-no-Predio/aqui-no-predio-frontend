@@ -1,10 +1,59 @@
 <div class="view">
-
-    <div class="login">
-        <app-manager-login />
+    <div class="login" *ngIf="!(accessGranted$ | async)">
+        <app-manager-login></app-manager-login>
     </div>
 
-    <div class="post">
-        <app-manager-post/>
+    <div *ngIf="accessGranted$ | async">
+        <div class="action-btn">
+            <button class="posts-btn" (click)="showComponent = 'posts'">Ver, editar e deletar posts</button>
+            <button class="create-btn" (click)="openCreateModal()">Criar novo post</button>
+        </div>
+
+        <div *ngIf="isCreateModalOpen" class="modal-backdrop show">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Crie um novo post</h2>
+                        <button class="close-btn" (click)="closeCreateModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="styleForm">
+                            <div class="form-group">
+                                <label for="title">Título</label>
+                                <input class="form-control" type="text" id="title" name="title"
+                                    placeholder="Digite o título aqui..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Descrição</label>
+                                <textarea class="form-control" id="description" name="description"
+                                    placeholder="Digite a descrição detalhada aqui..." required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="category" value="avisos" checked> Avisos
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="category" value="eventos"> Eventos
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    (click)="closeCreateModal()">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="showComponent === 'posts'">
+            <app-posts></app-posts>
+        </div>
     </div>
-</div>

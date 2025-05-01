@@ -5,16 +5,18 @@
     </div>
     <div class="form-container">
         <div class="material-symbols-outlined" id="icon">
-                lock_person
+            lock_person
         </div>
-        <form id="apiKeyForm">
+        <form id="accessKeyForm">
             <div class="form-group">
-                <label for="apiKey">Chave de Acesso</label>
-                <input type="text" id="apiKey" class="form-control" placeholder="Insira sua chave de acesso" required>
+                <label for="accessKey">Chave de Acesso</label>
+                <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+                <input type="text" id="accessKey" [(ngModel)]="accessKey" name="accessKey" class="form-control" [ngClass]="{ 'input-error': errorMessage }"
+                    placeholder="Insira sua chave de acesso" required>
                 <p class="help-text">Sua chave de acesso foi disponibilizada via e-mail.</p>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn">Validar Chave</button>
+                <button type="button" class="btn" id="validateBtn" (click)="login()">Validar Chave</button>
             </div>
         </form>
     </div>

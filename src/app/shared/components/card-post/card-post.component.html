@@ -4,12 +4,81 @@
         'post-header-evento': post.postType === 'Evento'
     }">
         {{post.postType}}
+
     </div>
     <div class="post-content">
-        <h3 class="post-title">{{post.postTitle}}</h3>
+        <div class="post-content-header">
+            <h3 class="post-title">{{post.postTitle}}</h3>
+            <div *ngIf="accessGranted$ | async" class="post-actions">
+                <button class="post-action-btn edit-btn" (click)="openEditModal()">✏️</button>
+                <button class="post-action-btn delete-btn" (click)="openDeleteModal()">🗑️</button>
+            </div>
+        </div>
         <p class="post-excerpt">{{post.description}}</p>
         <div class="post-meta">
             <span class="post-date">Publicado em {{dateFormatter() }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" [class.show]="isEditModalOpen" *ngIf="isEditModalOpen" #editModalElement>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Post</h4>
+                <button type="button" class="close-btn" (click)="closeEditModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="postForm">
+                    <div class="form-group">
+                        <label for="postTitle">Título do Post</label>
+                        <input type="text" class="form-control" id="postTitle" formControlName="postTitle">
+                        <div *ngIf="postForm.get('postTitle')?.invalid && postForm.get('postTitle')?.touched"
+                            class="text-danger">
+                            Título do post é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postType">Tipo de Post</label>
+                        <input type="text" class="form-control" id="postType" formControlName="postType">
+                        <div *ngIf="postForm.get('postType')?.invalid && postForm.get('postType')?.touched"
+                            class="text-danger">
+                            Tipo de post é obrigatório
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrição</label>
+                        <textarea class="form-control" id="description" formControlName="description"
+                            rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary" [disabled]="postForm.invalid"
+                    (click)="savePost()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" [class.show]="isDeleteModalOpen" *ngIf="isDeleteModalOpen" #deleteModalElement>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmar Exclusão</h4>
+                <button type="button" class="close-btn" (click)="closeDeleteModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir o post <strong>{{ post.postTitle }}</strong>?</p>
+                <p class="text-danger">Esta ação não pode ser desfeita.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deletePost()">Excluir</button>
+            </div>
         </div>
     </div>
 </div>

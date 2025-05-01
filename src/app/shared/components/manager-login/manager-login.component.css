@@ -40,7 +40,7 @@
 .form-control {
     width: 90%;
     padding: 14px 16px;
-    border: 2px solid var(--persian-red);
+    border: 2px solid var(--caribbean-current);
     border-radius: 6px;
     font-size: 15px;
     transition: all 0.3s;
@@ -48,16 +48,17 @@
 
 .form-control:focus {
     outline: none;
-    border-color: var(--burnt-umber);
-    box-shadow: 0 0 0 3px var(--champagne-pink);
+    border-color: var(--dark-slate-gray);
+    box-shadow: 0 0 0 3px var(--shadow-light);
 }
 
 .btn {
-    background-color: var(--caribbean-current);
+    background-color: var(--dark-slate-gray);
     color: var(--neutral-white);
     border: none;
     padding: 14px 20px;
     border-radius: 6px;
+    margin-top: 26px;
     width: 100%;
     font-size: 16px;
     font-weight: 600;
@@ -69,9 +70,35 @@
     transform: translateY(-2px);
 }
 
-.btn:active {
-    transform: translateY(0);
+.btn.success {
+    background-color: var(--caribbean-current) !important;
+    transition: all 0.4s ease-in-out;
+    position: relative;
 }
+
+.btn.success::after {
+    content: '✓';
+    font-size: 1.2rem;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: fadeInCheck 0.5s forwards 0.2s;
+}
+
+@keyframes fadeInCheck {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
 
 #icon {
     display: flex;
@@ -82,9 +109,17 @@
 }
 
 .help-text {
-    font-size: 13px;
+    font-size: 16px;
     color: var(--dark-slate-gray);
     margin-top: 8px;
-    margin-bottom: 26px;
     line-height: 1.5;
+}
+
+.error-message {
+    color: var(--persian-red);
+    margin: 2px 0;
+}
+
+.input-error {
+    border-color: var(--persian-red);
 }
