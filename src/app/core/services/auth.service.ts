@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 
-export class AccessService {
+export class AuthService {
   private accessGrantedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   accessGranted$: Observable<boolean> = this.accessGrantedSubject.asObservable();
 

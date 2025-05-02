@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccessService } from '../../../core/services/access.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -17,13 +17,13 @@ export class ManagerLoginComponent {
 
   private readonly TEMP_VALID_KEY = 'chave_temporaria123';
 
-  constructor(private router: Router, private accessService: AccessService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   login(): void {
     if (this.accessKey === this.TEMP_VALID_KEY) {
       console.log('Chave de acesso temporária válida.');
       this.errorMessage = '';
-      this.accessService.setAccessGranted(true);
+      this.authService.setAccessGranted(true);
 
       const btn = document.getElementById('validateBtn');
       if (btn) {

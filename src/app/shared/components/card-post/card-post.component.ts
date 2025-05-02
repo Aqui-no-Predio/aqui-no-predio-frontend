@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Post } from '../../../models/post.model';
 import { CommonModule } from '@angular/common';
-import { AccessService } from '../../../core/services/access.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -21,8 +21,8 @@ export class CardPostComponent {
   isEditModalOpen = false;
   isDeleteModalOpen = false;
 
-  constructor(private accessService: AccessService, private fb: FormBuilder) {
-    this.accessGranted$ = this.accessService.accessGranted$;
+  constructor(private authService: AuthService, private fb: FormBuilder) {
+    this.accessGranted$ = this.authService.accessGranted$;
   }
   
   openEditModal(): void {

@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ManagerLoginComponent } from "../components/manager-login/manager-login.component";
 import { PostsComponent } from "../posts/posts.component";
 import { Observable } from 'rxjs';
-import { AccessService } from '../../core/services/access.service';
+import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -16,8 +16,8 @@ export class ManagerComponent {
   accessGranted$: Observable<boolean>;
   isCreateModalOpen = false;
 
-  constructor(private accessService: AccessService) {
-    this.accessGranted$ = this.accessService.accessGranted$;
+  constructor(private authService: AuthService) {
+    this.accessGranted$ = this.authService.accessGranted$;
   }
 
   showComponent: 'posts' | null = null;
