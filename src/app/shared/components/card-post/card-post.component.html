@@ -9,7 +9,7 @@
     <div class="post-content">
         <div class="post-content-header">
             <h3 class="post-title">{{post.postTitle}}</h3>
-            <div *ngIf="accessGranted$ | async" class="post-actions">
+            <div *ngIf="isAuthenticated" class="post-actions">
                 <button class="post-action-btn edit-btn" (click)="openEditModal()">✏️</button>
                 <button class="post-action-btn delete-btn" (click)="openDeleteModal()">🗑️</button>
             </div>

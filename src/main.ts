@@ -1,6 +1,17 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './app/app.component'; 
 
-bootstrapApplication(AppComponent, appConfig)
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes'; 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './app/core/interceptors/JwtInterceptor';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    provideRouter(routes),
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ]
+})
   .catch((err) => console.error(err));

@@ -1,9 +1,9 @@
 <div class="view">
-    <div class="login" *ngIf="!(accessGranted$ | async)">
+    <div class="login" *ngIf="!isAuthenticated">
         <app-manager-login></app-manager-login>
     </div>
 
-    <div *ngIf="accessGranted$ | async">
+    <div *ngIf="isAuthenticated">
         <div class="action-btn">
             <button class="posts-btn" (click)="showComponent = 'posts'">Ver, editar e deletar posts</button>
             <button class="create-btn" (click)="openCreateModal()">Criar novo post</button>

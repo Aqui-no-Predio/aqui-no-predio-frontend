@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-manager-login',
@@ -15,28 +16,36 @@ export class ManagerLoginComponent {
   accessKey: string = '';
   errorMessage: string = '';
 
-  private readonly TEMP_VALID_KEY = 'chave_temporaria123';
-
   constructor(private router: Router, private authService: AuthService) { }
 
   login(): void {
-    if (this.accessKey === this.TEMP_VALID_KEY) {
-      console.log('Chave de acesso temporária válida.');
-      this.errorMessage = '';
-      this.authService.setAccessGranted(true);
+    this.errorMessage = '';
 
-      const btn = document.getElementById('validateBtn');
-      if (btn) {
-        btn.classList.add('success');
+    this.authService.login(this.accessKey).subscribe({
+      next: (response) => {
+        console.log('Login bem-sucedido, token recebido.');
 
-        setTimeout(() => {
-          btn.classList.remove('success');
-        }, 3000);
+        const btn = document.getElementById('validateBtn');
+        if (btn) {
+          btn.classList.add('success');
+          setTimeout(() => {
+            btn.classList.remove('success');
+          }, 3000);
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Erro na resposta de login:', error);
+        this.errorMessage = error.error && typeof error.error === 'object' && error.error.message
+          ? error.error.message
+          : error.error || 'Chave de acesso inválida.';
+        const btn = document.getElementById('validateBtn');
+        if (btn) {
+          btn.classList.add('error');
+          setTimeout(() => {
+            btn.classList.remove('error');
+          }, 3000);
+        }
       }
-
-    } else {
-      this.errorMessage = 'Chave de acesso inválida.';
-      console.log('Chave de acesso temporária inválida.');
-    }
+    });
   }
 }
