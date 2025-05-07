@@ -1,9 +1,9 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Post } from '../../../models/post.model';
 import { CommonModule } from '@angular/common';
-import { AccessService } from '../../../core/services/access.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-card-post',
@@ -16,20 +16,33 @@ export class CardPostComponent {
   @ViewChild('editModalElement') editModalElement!: ElementRef;
   @ViewChild('deleteModalElement') deleteModalElement!: ElementRef;
 
-  accessGranted$: Observable<boolean>;
   postForm!: FormGroup;
   isEditModalOpen = false;
   isDeleteModalOpen = false;
 
-  constructor(private accessService: AccessService, private fb: FormBuilder) {
-    this.accessGranted$ = this.accessService.accessGranted$;
+  isAuthenticated: boolean = false;
+  private authSubscription: Subscription;
+
+  constructor(private authService: AuthService, private fb: FormBuilder) {
+    this.authSubscription = this.authService.isAuthenticated$.subscribe(
+      (authenticated) => {
+        this.isAuthenticated = authenticated;
+      }
+    );
   }
-  
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
   openEditModal(): void {
     this.postForm = this.fb.group({
       postTitle: [this.post.postTitle, Validators.required],
       postType: [this.post.postType, Validators.required],
-      description: [this.post.description]    });
+      description: [this.post.description]
+    });
 
     this.isEditModalOpen = true;
     document.body.classList.add('modal-open');

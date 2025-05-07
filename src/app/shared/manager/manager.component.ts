@@ -1,11 +1,10 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ManagerLoginComponent } from "../components/manager-login/manager-login.component";
 import { PostsComponent } from "../posts/posts.component";
-import { Observable } from 'rxjs';
-import { AccessService } from '../../core/services/access.service';
+import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Post } from '../../models/post.model';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-manager',
@@ -14,11 +13,23 @@ import { Post } from '../../models/post.model';
   styleUrl: './manager.component.css'
 })
 export class ManagerComponent {
-  accessGranted$: Observable<boolean>;
   isCreateModalOpen = false;
 
-  constructor(private accessService: AccessService) {
-    this.accessGranted$ = this.accessService.accessGranted$;
+  isAuthenticated: boolean = false;
+  private authSubscription: Subscription;
+
+  constructor(private authService: AuthService) {
+    this.authSubscription = this.authService.isAuthenticated$.subscribe(
+      (authenticated) => {
+        this.isAuthenticated = authenticated;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 
   showComponent: 'posts' | null = null;

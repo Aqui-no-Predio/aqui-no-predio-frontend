@@ -7,11 +7,12 @@
         <div class="material-symbols-outlined" id="icon">
             lock_person
         </div>
-        <form id="accessKeyForm">
+        <form (ngSubmit)="login()">
             <div class="form-group">
                 <label for="accessKey">Chave de Acesso</label>
                 <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-                <input type="text" id="accessKey" [(ngModel)]="accessKey" name="accessKey" class="form-control" [ngClass]="{ 'input-error': errorMessage }"
+                <input type="password" id="accessKey" [(ngModel)]="accessKey" 
+                name="accessKey" class="form-control" [ngClass]="{ 'input-error': errorMessage }"
                     placeholder="Insira sua chave de acesso" required>
                 <p class="help-text">Sua chave de acesso foi disponibilizada via e-mail.</p>
             </div>

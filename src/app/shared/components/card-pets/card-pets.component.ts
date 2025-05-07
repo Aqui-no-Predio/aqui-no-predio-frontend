@@ -1,7 +1,8 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core'; // Importe Output e EventEmitter
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Pet } from '../../../models/pet.model';
 import { CommonModule } from '@angular/common';
+import { PetService } from '../../../core/services/pet/pet.service';
 
 @Component({
   selector: 'app-card-pets',
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class CardPetsComponent {
   @Input() pet!: Pet;
+  @Output() petDeleted = new EventEmitter<void>(); 
+  @Output() petUpdated = new EventEmitter<void>(); 
+
   @ViewChild('editModalElement') editModalElement!: ElementRef;
   @ViewChild('deleteModalElement') deleteModalElement!: ElementRef;
 
@@ -18,7 +22,7 @@ export class CardPetsComponent {
   isEditModalOpen = false;
   isDeleteModalOpen = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private petService: PetService) { }
 
   getPetTypeClass(petType: String): string {
     switch (petType) {
@@ -38,8 +42,10 @@ export class CardPetsComponent {
         return 'pet-image-other';
     }
   }
+
   openEditModal(): void {
     this.petForm = this.fb.group({
+      id: [this.pet.id], 
       petName: [this.pet.petName, Validators.required],
       petType: [this.pet.petType, Validators.required],
       characteristics: [this.pet.characteristics],
@@ -68,14 +74,29 @@ export class CardPetsComponent {
 
   savePet(): void {
     if (this.petForm.valid) {
-      console.log('Método de edição ainda não implementado. Dados enviados:', this.petForm.value);
-      this.closeEditModal();
+      const updatedPet: Pet = this.petForm.value;
+      this.petService.updatePet(updatedPet).subscribe({
+        next: (pet) => {
+          this.closeEditModal();
+          this.petUpdated.emit(); 
+        },
+        error: (error) => {
+          console.error('Erro ao atualizar pet:', error);
+        }
+      });
     }
   }
 
   deletePet(): void {
-    console.log('Método de deleção ainda não implementado. ID do pet a ser deletado:', this.pet.id);
-    this.closeDeleteModal();
+    this.petService.deletePet(this.pet.id).subscribe({
+      next: () => {
+        this.closeDeleteModal();
+        this.petDeleted.emit(); 
+      },
+      error: (error) => {
+        console.error('Erro ao deletar pet:', error);
+      }
+    });
   }
 
 }
