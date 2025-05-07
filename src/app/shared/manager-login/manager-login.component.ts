@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,12 +11,21 @@ import { AuthService } from '../../core/services/auth/auth.service';
   templateUrl: './manager-login.component.html',
   styleUrl: './manager-login.component.css'
 })
-export class ManagerLoginComponent {
+
+export class ManagerLoginComponent implements OnInit {
 
   accessKey: string = '';
   errorMessage: string = '';
-
+  
   constructor(private router: Router, private authService: AuthService) { }
+  
+  ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.router.navigate(['/sindico']);
+      }
+    });
+  }
 
   login(): void {
     this.errorMessage = '';

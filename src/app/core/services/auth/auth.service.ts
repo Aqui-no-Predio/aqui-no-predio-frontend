@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap, catchError, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   private readonly TOKEN_STORAGE_KEY = 'auth_token';
   private readonly FIXED_USERNAME = 'manager';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.checkAuthOnAppLoad();
   }
 
@@ -30,6 +31,7 @@ export class AuthService {
           if (response && response.token) {
             this.storeToken(response.token);
             this.isAuthenticatedSubject.next(true);
+            this.router.navigate(['/sindico']);
           } else {
             console.error('Resposta de login não contém token esperado:', response);
             this.isAuthenticatedSubject.next(false);
@@ -55,11 +57,14 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.TOKEN_STORAGE_KEY);
     this.isAuthenticatedSubject.next(false);
+    this.router.navigate(['/login']);
   }
 
   checkAuthOnAppLoad(): void {
     const token = this.getToken();
     if (token) {
+      this.isAuthenticatedSubject.next(true);
+      
       this.http.get<any>(`${environment.apiUrl}/auth/check`, { headers: this.getAuthHeaders() })
         .pipe(
           tap(() => {
@@ -72,7 +77,6 @@ export class AuthService {
               this.logout();
             } else {
               console.error('Erro ao verificar token ao carregar aplicação:', error);
-              this.isAuthenticatedSubject.next(false);
             }
             return of(null);
           })
