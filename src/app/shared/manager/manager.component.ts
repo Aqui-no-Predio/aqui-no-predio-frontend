@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ManagerLoginComponent } from "../components/manager-login/manager-login.component";
 import { PostsComponent } from "../posts/posts.component";
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -10,7 +9,7 @@ import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-manager',
-  imports: [ManagerLoginComponent, PostsComponent, CommonModule, ReactiveFormsModule],
+  imports: [ PostsComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './manager.component.html',
   styleUrl: './manager.component.css'
 })

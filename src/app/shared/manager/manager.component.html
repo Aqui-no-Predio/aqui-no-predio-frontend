@@ -1,8 +1,4 @@
 <div class="view">
-    <div class="login" *ngIf="!isAuthenticated">
-        <app-manager-login></app-manager-login>
-    </div>
-
     <div *ngIf="isAuthenticated">
         <div class="action-btn">
             <button class="posts-btn" (click)="showComponent = 'posts'">Ver, editar e deletar posts</button>

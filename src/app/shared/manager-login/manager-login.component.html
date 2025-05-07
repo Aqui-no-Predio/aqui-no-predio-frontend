@@ -1,0 +1,25 @@
+<div class="view">
+    <div class="container">
+        <div class="header">
+            <h1>Autenticação de Acesso de Síndicos</h1>
+            <p>Insira sua chave de acesso exclusiva para síndicos</p>
+        </div>
+        <div class="form-container">
+            <div class="material-symbols-outlined" id="icon">
+                lock_person
+            </div>
+            <form (ngSubmit)="login()">
+                <div class="form-group">
+                    <label for="accessKey">Chave de Acesso</label>
+                    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+                    <input type="password" id="accessKey" [(ngModel)]="accessKey" name="accessKey" class="form-control"
+                        [ngClass]="{ 'input-error': errorMessage }" placeholder="Insira sua chave de acesso" required>
+                    <p class="help-text">Sua chave de acesso foi disponibilizada via e-mail.</p>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn" id="validateBtn" (click)="login()">Validar Chave</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
