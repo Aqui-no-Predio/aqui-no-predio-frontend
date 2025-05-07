@@ -1,8 +1,4 @@
 <div class="view">
-    <div class="login" *ngIf="!isAuthenticated">
-        <app-manager-login></app-manager-login>
-    </div>
-
     <div *ngIf="isAuthenticated">
         <div class="action-btn">
             <button class="posts-btn" (click)="showComponent = 'posts'">Ver, editar e deletar posts</button>
@@ -17,16 +13,16 @@
                         <button class="close-btn" (click)="closeCreateModal()">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form id="styleForm">
+                        <form id="styleForm" [formGroup]="postForm" (ngSubmit)="onSubmit()">
                             <div class="form-group">
-                                <label for="title">Título</label>
-                                <input class="form-control" type="text" id="title" name="title"
+                                <label for="postTitle">Título</label>
+                                <input class="form-control" type="text" id="postTitle" formControlName="postTitle"
                                     placeholder="Digite o título aqui..." required>
                             </div>
 
                             <div class="form-group">
                                 <label for="description">Descrição</label>
-                                <textarea class="form-control" id="description" name="description"
+                                <textarea class="form-control" id="description" formControlName="description"
                                     placeholder="Digite a descrição detalhada aqui..." required></textarea>
                             </div>
 
@@ -34,10 +30,10 @@
                                 <label>Categoria</label>
                                 <div class="radio-group">
                                     <label class="radio-option">
-                                        <input type="radio" name="category" value="avisos" checked> Avisos
+                                        <input type="radio" formControlName="postType" value="Aviso" checked> Avisos
                                     </label>
                                     <label class="radio-option">
-                                        <input type="radio" name="category" value="eventos"> Eventos
+                                        <input type="radio" formControlName="postType" value="Evento"> Eventos
                                     </label>
                                 </div>
                             </div>

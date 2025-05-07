@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; // Importe OnInit
+import { Component, OnInit } from '@angular/core'; 
 import { CardPetsComponent } from "../components/card-pets/card-pets.component";
 import { CommonModule, NgFor } from '@angular/common';
 import { Pet } from '../../models/pet.model';

@@ -1,8 +1,9 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Post } from '../../../models/post.model';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PostService } from '../../../core/services/post/post.service';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
@@ -13,6 +14,9 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 })
 export class CardPostComponent {
   @Input() post!: Post;
+  @Output() postDeleted = new EventEmitter<void>();
+  @Output() postUpdated = new EventEmitter<void>();
+
   @ViewChild('editModalElement') editModalElement!: ElementRef;
   @ViewChild('deleteModalElement') deleteModalElement!: ElementRef;
 
@@ -23,7 +27,7 @@ export class CardPostComponent {
   isAuthenticated: boolean = false;
   private authSubscription: Subscription;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private fb: FormBuilder, private postService: PostService) {
     this.authSubscription = this.authService.isAuthenticated$.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;
@@ -39,6 +43,7 @@ export class CardPostComponent {
 
   openEditModal(): void {
     this.postForm = this.fb.group({
+      id: [this.post.id], 
       postTitle: [this.post.postTitle, Validators.required],
       postType: [this.post.postType, Validators.required],
       description: [this.post.description]
@@ -65,27 +70,49 @@ export class CardPostComponent {
 
   savePost(): void {
     if (this.postForm.valid) {
-      console.log('Método de edição ainda não implementado. Dados enviados:', this.postForm.value);
-      this.closeEditModal();
+      const updatedPost: Post = this.postForm.value;
+      this.postService.updatePost(updatedPost, this.post.id).subscribe({
+        next: (post) => {
+          this.closeEditModal();
+          this.postUpdated.emit();
+        },
+        error: (error) => {
+          console.error('Erro ao atualizar post:', error);
+        }
+      });
     }
   }
 
   deletePost(): void {
-    console.log('Método de deleção ainda não implementado. ID do post a ser deletado:', this.post.id);
-    this.closeDeleteModal();
+    this.postService.deletePost(this.post.id).subscribe({
+      next: () => {
+        this.closeDeleteModal();
+        this.postDeleted.emit();
+      },
+      error: (error) => {
+        console.error('Erro ao deletar post:', error);
+      }
+    });
   }
 
   dateFormatter(): string {
-    const data = this.post.postDate;
-
+    const dataString = this.post.postDate; 
+    const data = new Date(dataString); 
+  
+    if (isNaN(data.getTime())) {
+      console.error('Data inválida recebida do backend:', dataString);
+      return 'Data inválida'; 
+    }
+  
     const OPTIONS: Intl.DateTimeFormatOptions = {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
     };
-
+  
     const FORMATTEDDATE = data.toLocaleDateString('pt-BR', OPTIONS);
-
+  
     return FORMATTEDDATE;
   }
+  
 }
