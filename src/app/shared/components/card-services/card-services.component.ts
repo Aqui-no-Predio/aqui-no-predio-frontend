@@ -1,7 +1,8 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Service } from '../../../models/service.model';
 import { CommonModule } from '@angular/common';
+import { ServiceService } from '../../../core/services/service/service.service';
 
 @Component({
   selector: 'app-card-services',
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class CardServicesComponent {
   @Input() service!: Service;
+  @Output() serviceDeleted = new EventEmitter<void>(); 
+  @Output() serviceUpdated = new EventEmitter<void>(); 
+
   @ViewChild('editModalElement') editModalElement!: ElementRef;
   @ViewChild('deleteModalElement') deleteModalElement!: ElementRef;
 
@@ -18,10 +22,11 @@ export class CardServicesComponent {
   isEditModalOpen = false;
   isDeleteModalOpen = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private serviceService: ServiceService) { }
 
   openEditModal(): void {
     this.serviceForm = this.fb.group({
+      id: [this.service.id], 
       serviceName: [this.service.serviceName, Validators.required],
       description: [this.service.description],
       person: [this.service.person, Validators.required],
@@ -49,14 +54,29 @@ export class CardServicesComponent {
 
   saveService(): void {
     if (this.serviceForm.valid) {
-      console.log('Método de edição ainda não implementado. Dados enviados:', this.serviceForm.value);
-      this.closeEditModal();
-    }
+          const updatedService: Service = this.serviceForm.value;
+          this.serviceService.updateService(updatedService).subscribe({
+            next: (service) => {
+              this.closeEditModal();
+              this.serviceUpdated.emit(); 
+            },
+            error: (error) => {
+              console.error('Erro ao atualizar service:', error);
+            }
+          });
+        }
   }
 
   deleteService(): void {
-    console.log('Método de deleção ainda não implementado. ID do serviço a ser deletado:', this.service.id);
-    this.closeDeleteModal();
+    this.serviceService.deleteService(this.service.id).subscribe({
+      next: () => {
+        this.closeDeleteModal();
+        this.serviceDeleted.emit(); 
+      },
+      error: (error) => {
+        console.error('Erro ao deletar service:', error);
+      }
+    });
   }
 
 }
