@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardPostComponent } from "../components/card-post/card-post.component";
 import { NgFor } from '@angular/common';
 import { Post } from '../../models/post.model';
-import { POSTS } from '../../../assets/mocks/post.mock';
+import { PostService } from '../../core/services/post/post.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-posts',
@@ -10,12 +11,29 @@ import { POSTS } from '../../../assets/mocks/post.mock';
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
-export class PostsComponent {
-  allPosts: Post[] = POSTS;
+export class PostsComponent implements OnInit {
+  allPosts: Post[] = [];
   filteredPosts: Post[] = [...this.allPosts];
   activeTab: string = 'Todos';
 
-  constructor() { }
+  constructor(private postService: PostService) { }
+
+  ngOnInit(): void {
+    this.loadPosts();
+  }
+
+  loadPosts(): void {
+    this.postService.getAllPosts().subscribe({
+      next: (data) => {
+        this.allPosts = data;
+        this.filteredPosts = [...this.allPosts];
+        this.filterPosts(this.activeTab);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar posts:', error);
+      }
+    });
+  }
 
   filterPosts(type: string): void {
     this.activeTab = type;

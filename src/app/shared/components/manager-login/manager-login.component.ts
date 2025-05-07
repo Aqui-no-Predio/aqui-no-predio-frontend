@@ -23,7 +23,9 @@ export class ManagerLoginComponent {
 
     this.authService.login(this.accessKey).subscribe({
       next: (response) => {
-        console.log('Login bem-sucedido, token recebido.');
+        console.log('Login bem-sucedido.');
+        const token = response.token;
+        console.log('Token recebido:', token); 
 
         const btn = document.getElementById('validateBtn');
         if (btn) {
