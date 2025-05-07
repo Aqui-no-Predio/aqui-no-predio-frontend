@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core'; // Importe Output e EventEmitter
+import { Component, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Pet } from '../../../models/pet.model';
 import { CommonModule } from '@angular/common';
