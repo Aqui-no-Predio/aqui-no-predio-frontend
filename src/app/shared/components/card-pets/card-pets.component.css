@@ -110,6 +110,11 @@
     text-overflow: ellipsis;
 }
 
+.pet-data span {
+    color: var(--caribbean-current);
+    font-weight: 500;
+}
+
 .pet-meta {
     color: var(--neutral-gray);
     margin-top: auto;
