@@ -1,0 +1,132 @@
+.view {
+    margin-top: 8rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 450px;
+    background-color: var(--neutral-white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, var(--coral-pink), var(--persian-red));
+    color: var(--neutral-white);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.form-container {
+    padding: 30px 25px;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark-slate-gray);
+    font-size: 18px;
+}
+
+.form-control {
+    width: 90%;
+    padding: 14px 16px;
+    border: 2px solid var(--caribbean-current);
+    border-radius: 6px;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--dark-slate-gray);
+    box-shadow: 0 0 0 3px var(--shadow-light);
+}
+
+.btn {
+    background-color: var(--dark-slate-gray);
+    color: var(--neutral-white);
+    border: none;
+    padding: 14px 20px;
+    border-radius: 6px;
+    margin-top: 26px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn.success {
+    background-color: var(--caribbean-current) !important;
+    transition: all 0.4s ease-in-out;
+    position: relative;
+}
+
+.btn.success::after {
+    content: '✓';
+    font-size: 1.2rem;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: fadeInCheck 0.5s forwards 0.2s;
+}
+
+@keyframes fadeInCheck {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+
+#icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 42px;
+    color: var(--dark-slate-gray);
+}
+
+.help-text {
+    font-size: 16px;
+    color: var(--dark-slate-gray);
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.error-message {
+    color: var(--persian-red);
+    margin: 2px 0;
+}
+
+.input-error {
+    border-color: var(--persian-red);
+}

@@ -1,0 +1,72 @@
+<div class="services-view">
+    <div class="services-container">
+        <h1 class="services-title">Serviços</h1>
+        <div class="cards-grid">
+            <app-card-services *ngFor="let service of allServices" [service]="service" />
+        </div>
+        <div class="add-service-container">
+            <button class="add-service-button" (click)="openCreateModal()">Adicionar serviço</button>
+
+            <div *ngIf="isCreateModalOpen" class="modal-backdrop show">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Cadastrar novo serviço</h2>
+                            <button class="close-btn" (click)="closeCreateModal()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <label for="serviceName">Nome do Serviço</label>
+                                    <input type="text" class="form-control" id="serviceName"
+                                        formControlName="serviceName" placeholder="Digite o nome do serviço aqui..."
+                                        [ngClass]="{'is-invalid': serviceForm.get('serviceName')?.invalid && serviceForm.get('serviceName')?.touched}">
+                                    <div *ngIf="serviceForm.get('serviceName')?.invalid && serviceForm.get('serviceName')?.touched"
+                                        class="error-message">
+                                        Nome do serviço é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Descrição</label>
+                                    <textarea class="form-control" id="description"
+                                        placeholder="Digite a descrição do serviço aqui..."
+                                        formControlName="description" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="person">Pessoa responsável</label>
+                                    <input type="text" class="form-control" id="person" formControlName="person"
+                                        placeholder="Digite o nome da pessoa responsável aqui..."
+                                        [ngClass]="{'is-invalid': serviceForm.get('person')?.invalid && serviceForm.get('person')?.touched}">
+                                    <div *ngIf="serviceForm.get('person')?.invalid && serviceForm.get('person')?.touched"
+                                        class="error-message">
+                                        Nome da pessoa responsável é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="apartment">Apartamento</label>
+                                    <input type="text" class="form-control" id="apartment" formControlName="apartment"
+                                        placeholder="Digite o número do apartamento aqui..."
+                                        [ngClass]="{'is-invalid': serviceForm.get('apartment')?.invalid && serviceForm.get('apartment')?.touched}">
+                                    <div *ngIf="serviceForm.get('apartment')?.invalid && serviceForm.get('apartment')?.touched"
+                                        class="error-message">
+                                        Número do apartamento é obrigatório
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        (click)="closeCreateModal()">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary"
+                                        [disabled]="serviceForm.invalid">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
